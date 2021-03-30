@@ -1,4 +1,5 @@
 ﻿using Assignment10.Models;
+using Assignment10.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -34,17 +35,30 @@ namespace Assignment10.Controllers
             //pagination current page #
             //int pageNum = 1;
 
-            return View(context.Bowlers
+            return View(new IndexViewModel
+            {
+                Bowlers = (context.Bowlers
                 //.FromSqlRaw("SELECT * FROM Bowlers WHERE BowlerFirstName LIKE \"%A%\" ORDER BY BowlerFirstName")
                 //.FromSqlInterpolated($"SELECT * FROM Bowlers WHERE TeamId LIKE {teamSearch}")
-                
+
                 //.FromSqlInterpolated($"SELECT * FROM Bowlers WHERE TeamId = {bowlerteamid} OR {bowlerteamid} IS NULL")
                 .Where(m => m.TeamId == bowlerteamid || bowlerteamid == null)
                 .OrderBy(m => m.BowlerFirstName)
                 //pagination
-                .Skip((pageNum-1)* pageSize)
+                .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
-                .ToList());
+                .ToList()),
+
+                PageNumberingInfo = new PageNumberingInfo
+                {
+                    NumItemsPerPage=pageSize,
+                    CurrentPage = pageNum,
+                    //counts total num of bowlers or num o selected team
+                    TotalNumItems = (bowlerteamid == null ? context.Bowlers.Count() :
+                        context.Bowlers.Where(x => x.TeamId == bowlerteamid).Count())
+                }
+            });
+                
         }
 
         public IActionResult Privacy()
