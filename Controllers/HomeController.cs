@@ -15,24 +15,35 @@ namespace Assignment10.Controllers
         private readonly ILogger<HomeController> _logger;
         private BowlingLeagueContext context { get; set; }
 
+
         public HomeController(ILogger<HomeController> logger, BowlingLeagueContext ctx)
         {
             _logger = logger;
             context = ctx;
         }
 
-        public IActionResult Index(long? bowlerteamid)
+        //                                         pass in pageNum
+        public IActionResult Index(long? bowlerteamid, int pageNum = 0)
         {
             //var blah = "%oooword%"; //for string interpolation>>replace bowlerSearch w/ blah below
             //or could pass in a parameter to change search var each time
-                //index(string bowlerSearch) example
+            //index(string bowlerSearch) example
+
+            //pagination # items per page var
+            int pageSize = 5;
+            //pagination current page #
+            //int pageNum = 1;
 
             return View(context.Bowlers
                 //.FromSqlRaw("SELECT * FROM Bowlers WHERE BowlerFirstName LIKE \"%A%\" ORDER BY BowlerFirstName")
                 //.FromSqlInterpolated($"SELECT * FROM Bowlers WHERE TeamId LIKE {teamSearch}")
-                .FromSqlInterpolated($"SELECT * FROM Bowlers WHERE TeamId = {bowlerteamid} OR {bowlerteamid} IS NULL")
-                //.Where(x => x.BowlerFirstName.Contains("A"))
-                //.OrderBy(x => x.BowlerId)
+                
+                //.FromSqlInterpolated($"SELECT * FROM Bowlers WHERE TeamId = {bowlerteamid} OR {bowlerteamid} IS NULL")
+                .Where(m => m.TeamId == bowlerteamid || bowlerteamid == null)
+                .OrderBy(m => m.BowlerFirstName)
+                //pagination
+                .Skip((pageNum-1)* pageSize)
+                .Take(pageSize)
                 .ToList());
         }
 
