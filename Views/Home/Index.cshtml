@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model IEnumerable<Bowlers>
+<table>
+    <thead>
+        <tr>
+            <td>First</td>
+            <td>Middle</td>
+            <td>Last</td>
+            <td>Address</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Phone</td>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.BowlerFirstName</td>
+                    <td>@x.BowlerMiddleInit</td>
+                    <td>@x.BowlerLastName</td>
+                    <td>@x.BowlerAddress</td>
+                    <td>@x.BowlerCity</td>
+                    <td>@x.BowlerState</td>
+                    <td>@x.BowlerZip</td>
+                    <td>@x.BowlerPhoneNumber</td>
+                </tr>
+            }
+    </tbody>
+</table>
+
