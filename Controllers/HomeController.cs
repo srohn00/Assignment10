@@ -24,7 +24,7 @@ namespace Assignment10.Controllers
         }
 
         //                                         pass in pageNum
-        public IActionResult Index(long? bowlerteamid, int pageNum = 0)
+        public IActionResult Index(long? bowlerteamid, string bowlerteam, int pageNum = 0)
         {
             //var blah = "%oooword%"; //for string interpolation>>replace bowlerSearch w/ blah below
             //or could pass in a parameter to change search var each time
@@ -56,7 +56,9 @@ namespace Assignment10.Controllers
                     //counts total num of bowlers or num o selected team
                     TotalNumItems = (bowlerteamid == null ? context.Bowlers.Count() :
                         context.Bowlers.Where(x => x.TeamId == bowlerteamid).Count())
-                }
+                },
+
+                TeamCategory = bowlerteam
             });
                 
         }

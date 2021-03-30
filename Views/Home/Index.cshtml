@@ -17,23 +17,24 @@
         </tr>
     </thead>
     <tbody>
-            @foreach (var x in Model.Bowlers)
-            {
-                <tr>
-                    <td>@x.BowlerFirstName</td>
-                    <td>@x.BowlerMiddleInit</td>
-                    <td>@x.BowlerLastName</td>
-                    <td>@x.BowlerAddress</td>
-                    <td>@x.BowlerCity</td>
-                    <td>@x.BowlerState</td>
-                    <td>@x.BowlerZip</td>
-                    <td>@x.BowlerPhoneNumber</td>
-                </tr>
-            }
+        @foreach (var x in Model.Bowlers)
+        {
+            <tr>
+                <td>@x.BowlerFirstName</td>
+                <td>@x.BowlerMiddleInit</td>
+                <td>@x.BowlerLastName</td>
+                <td>@x.BowlerAddress</td>
+                <td>@x.BowlerCity</td>
+                <td>@x.BowlerState</td>
+                <td>@x.BowlerZip</td>
+                <td>@x.BowlerPhoneNumber</td>
+            </tr>
+        }
     </tbody>
 </table>
 
-<div page-info="@Model.PageNumberingInfo">
+<div page-info="@Model.PageNumberingInfo" page-url-bowlerteam="@Model.TeamCategory">
 
 </div>
 
+@*bowler-team="@Model.TeamCategory"*@
