@@ -62,7 +62,7 @@ namespace Assignment10
                     new { Controller = "Home", action = "Index", pageNum=1}
                     );
                 endpoints.MapControllerRoute("pagenum",
-                    "{pageum}",
+                    "{pagenum}",
                     new {Controller = "Home", action = "Index"});
 
                 endpoints.MapControllerRoute(

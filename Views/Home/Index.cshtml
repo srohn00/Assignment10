@@ -2,7 +2,11 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*Display heading with team name based on selected team*@
+<h1>@Model.TeamCategory</h1>
+
 @model IndexViewModel
+@*Display bowler contact info in a table*@
 <table>
     <thead>
         <tr>
@@ -16,6 +20,7 @@
             <td>Phone</td>
         </tr>
     </thead>
+    @*loop through each bowler in database*@
     <tbody>
         @foreach (var x in Model.Bowlers)
         {
@@ -33,7 +38,9 @@
     </tbody>
 </table>
 
-<div page-info="@Model.PageNumberingInfo" page-url-bowlerteam="@Model.TeamCategory">
+@*pagination*@
+<div page-info="@Model.PageNumberingInfo" 
+     page-url-bowlerteam="@Model.TeamCategory">
 
 </div>
 

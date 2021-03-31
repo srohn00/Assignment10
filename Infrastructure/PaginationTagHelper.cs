@@ -21,7 +21,6 @@ namespace Assignment10.Infrastructure
         }
 
         public PageNumberingInfo PageInfo { get; set; }
-        //public string BowlerTeam { get; set; }
 
         //own dictionary - key value pairs- that we are creating
         [HtmlAttributeName(DictionaryAttributePrefix ="page-url-")]
@@ -33,16 +32,14 @@ namespace Assignment10.Infrastructure
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper urlHelp = urlInfo.GetUrlHelper(ViewContext);
-            //base.Process(context, output);
             TagBuilder finishedTag = new TagBuilder("div");
             
-
+            //create a tag helper for each page num
             for (int i=1; i <= PageInfo.NumPages; i++)
             {
                 TagBuilder individualTag = new TagBuilder("a");
 
                 KeyValuePairs["pageNum"]=i;
-                //individualTag.Attributes["href"] = "/" + BowlerTeam + "/" + "?pagenum=" + i;
                 individualTag.Attributes["href"] = urlHelp.Action("Index", KeyValuePairs);
                 individualTag.InnerHtml.Append(i.ToString());
                 finishedTag.InnerHtml.AppendHtml(individualTag);

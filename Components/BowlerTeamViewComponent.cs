@@ -16,7 +16,10 @@ namespace Assignment10.Components
         }
         public IViewComponentResult Invoke()
         {
-                      return View(context.Teams
+            //highlight selected team on left nav bar
+            ViewBag.SelectedTeam = RouteData?.Values["bowlerteam"]; 
+            //return list of team names 
+            return View(context.Teams
                           //.Select(x => x.TeamName)
                           .Distinct()
                           .OrderBy(x => x)

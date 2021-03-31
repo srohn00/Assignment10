@@ -1,14 +1,16 @@
-﻿@model IEnumerable<Teams>
-
-
-<a asp-action="Index" asp-controller="Home" asp-route-bowlerteamid="">All Bowlers</a>
+﻿@*iterate through teams*@
+@model IEnumerable<Teams>
+@*dynamically highlight selected team*@
+<a class="btn btn-block @(ViewBag.SelectedTeam == null ? "btn-primary" : "btn-outline-secondary")"
+   asp-action="Index" asp-controller="Home" asp-route-bowlerteamid="">All Bowlers</a>
 <br />
 
 @foreach (var x in Model)
 {
-    <a asp-action="Index" asp-controller="Home" 
+    @*dynamically highlight selected team && pass team name and team id*@
+    <a class="btn btn-block @(x.TeamName == ViewBag.SelectedTeam ? "btn-primary" : "btn-outline-secondary")"
+       asp-action="Index" asp-controller="Home"
        asp-route-bowlerteamid="@x.TeamId"
-       asp-route-bowlerteam="@x.TeamName"
-       >@x.TeamName</a>
+       asp-route-bowlerteam="@x.TeamName">@x.TeamName</a>
     <br />
 }
