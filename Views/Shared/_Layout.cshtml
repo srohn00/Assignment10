@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Assignment10</title>
+    <title>@ViewData["Title"] - BYU Bowling League</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -31,12 +31,13 @@
     </header>
     <div class="container">
         <div class="row">
-            <div class="col-4">
+            @*add in bowling team names left nav bar view component*@
+            <div class="col-4"> @*left nav bar gets 4 col width*@
                 <vc:bowler-team />
             </div>
-            <div class="col-8">
+            <div class="col-8"> @*main content gets 8 col width*@
                 <main role="main" class="pb-3">
-                    @RenderBody()
+                    @RenderBody() @*display body*@
                 </main>
             </div>
         </div>
